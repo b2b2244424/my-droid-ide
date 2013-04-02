@@ -1,0 +1,6 @@
+/docs/api/
+gen/
+bin/
+classes/
+local.properties
+*~
