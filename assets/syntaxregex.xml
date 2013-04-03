@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Languages>
+	<Java filetypes="java">
+		<Keywords>\b(abstract|assert|boolean|break|byte|case|catch|char|class|const|continue|default|do|double|else|enum|extends|final|finally|float|for|goto|if|implements|import|instanceof|int|interface|long|native|new|package|private|protected|public|return|short|static|strictfp|super|switch|synchronized|this|throw|transient|try|void|volatile|while|false|true|null)\b</Keywords>
+		<SingleLineComment cloneof="C"></SingleLineComment>
+		<MultiLineComment cloneof="C"></MultiLineComment>
+	</Java>
+	<C filetypes="c">
+		<SingleLineComment>//.*$</SingleLineComment>
+		<MultiLineComment>/\*.*?\*/</MultiLineComment>
+	</C>
+</Languages>

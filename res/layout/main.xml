@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal"
+	android:id="@+id/mainlayout"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<fragment
+		class="com.eyecreate.droidde.ProjectFilesFragment"
+		android:id="@+id/projectfiles"
+		android:layout_height="match_parent"
+		android:layout_width="269dp"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentBottom="true" />
+	<fragment
+		android:id="@+id/fileeditor"
+		android:layout_toRightOf="@id/projectfiles"
+		android:layout_alignTop="@id/projectfiles"
+		android:layout_alignBottom="@id/projectfiles"
+		android:layout_alignParentRight="true"
+		class="com.eyecreate.droidde.EditorFragment"
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"></fragment>
+</RelativeLayout>

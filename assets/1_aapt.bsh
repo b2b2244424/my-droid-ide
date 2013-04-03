@@ -1,0 +1,21 @@
+// BeanShell aapt script
+//	
+
+stSourcePath = dirname(pathToFile(getSourceFileInfo()).getAbsolutePath())+"/";
+stSourcePath = stSourcePath.replace('\\','/');
+
+name = "HelloAndroid";
+
+System.out.println("***** Running Aapt  ...");
+G.bshTask.fnPublishProgress("Aapt...");
+
+// mainActivity.bshTask.fnClear();
+
+File dir = new File(stSourcePath+"out/"+name);
+dir.mkdirs();
+args = "p -m -J "+stSourcePath+"gen -M "+stSourcePath+"AndroidManifest.xml -A "+stSourcePath+"assets -S "+stSourcePath+"res -I "+stSourcePath+"android.jar -f -F "+stSourcePath+"out/"+name+"/"+name+".apk.res";
+iResult = G.ide.fnAapt(args);
+
+if (iResult==0) G.bshTask.fnToast("aapt succeeded!",10000); 
+else G.bshTask.fnToast("aapt failed!",10000);
+

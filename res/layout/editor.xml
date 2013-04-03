@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fillViewport="true"
+>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent" android:layout_height="match_parent">
+<TextView
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/linenumbers"
+  android:orientation="horizontal"
+  android:layout_width="50dp"
+  android:layout_height="match_parent" 
+  android:textColor="#000000"
+   android:background="#999999"
+>
+</TextView>
+<com.eyecreate.droidde.RichEditText
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/editorcontent"
+  android:orientation="horizontal"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent" 
+  android:inputType="textMultiLine|textNoSuggestions" 
+  android:editable="true"
+  android:gravity="top|left"
+  android:textColor="#000000"
+  android:background="#FFFFFF">
+
+    
+</com.eyecreate.droidde.RichEditText>
+</LinearLayout>
+</ScrollView>
+

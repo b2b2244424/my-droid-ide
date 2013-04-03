@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome">Please Create New Project or Open .dpj from File Manager</string>
+    <string name="app_name">Droidde</string>
+    <string name="newproject">New Project</string>
+    <string name="invalidProject">Project is Invalid! Cannot load!</string>
+    <string name="project_name">untitledProject1</string>
+    <string name="project_name_label">Project Name</string>
+    <string name="project_location_label">Project Directory</string>
+    <string name="project_location_hint">Click and browse to the desired project directory</string>
+    <string name="saveproj">Save Project</string>
+    <string name="runproj">Run Project</string>
+    <string name="create_project">Create</string>
+    <string name="file_browse">Browse</string>
+    <string name="savefile">Save File</string>
+    <string name="addfile">Add File</string>
+    <string name="newfilename">New Filename</string>
+    <string name="pickfiletype">Filetype</string>
+    <string name="new_file_location">Location to Put File</string>
+    <string name="create_file">Create</string>
+    <string name="remove_file">Remove Opened File</string>
+    <string name="file_browse_title">Please Pick an Emtpy Folder for Project</string>
+</resources>

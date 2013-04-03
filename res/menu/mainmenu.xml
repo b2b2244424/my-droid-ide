@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/saveproj" android:title="@string/saveproj" android:showAsAction="always|withText"></item>
+    <item android:id="@+id/run" android:title="@string/runproj" android:showAsAction="always|withText"></item>
+    <item android:id="@+id/addfile" android:showAsAction="always|withText" android:title="@string/addfile"></item>
+    
+
+</menu>

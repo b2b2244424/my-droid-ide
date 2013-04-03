@@ -1,0 +1,24 @@
+
+// BeanShell dx script for JavaIDEdroid
+//
+// The main activity of JavaIDEdroid is
+// mapped to the variable mainActivity
+//	
+
+stScriptPath = dirname(pathToFile(getSourceFileInfo()).getAbsolutePath())+"/";
+stScriptPath=stScriptPath.replace('\\','/'); 
+
+name = "HelloAndroid";
+
+outdir=stScriptPath+"out/"+name;
+    
+print("***** Calling dx ...");
+G.bshTask.fnPublishProgress("Running dx...");
+
+args =  "--dex --output="+outdir+"/classes.dex";
+args += " "+outdir;
+// args += " "+stSourcePath+"libs\*.jar";
+iResult = G.ide.fnDx(args);
+
+if (iResult==0) G.bshTask.fnToast("dx succeeded!",10000);
+else G.bshTask.fnToast("dx failed!",10000);
