@@ -1,0 +1,208 @@
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.zb.ide</groupId>
+		<artifactId>droid</artifactId>
+		<version>0.0.1</version>
+	</parent>
+	<name>droiddetest</name>
+	<artifactId>droiddetest</artifactId>
+	<packaging>apk</packaging>
+	<version>1.0-SNAPSHOT</version>
+
+	<profiles>
+		<profile>
+			<id>emma</id>
+			<dependencies>
+
+				<dependency>
+					<groupId>emma</groupId>
+					<artifactId>emma</artifactId>
+					<type>jar</type>
+					<scope>compile</scope>
+					<version>2.1.5320</version>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>properties-maven-plugin</artifactId>
+						<version>1.0-alpha-1</version>
+						<executions>
+							<execution>
+								<phase>initialize</phase>
+								<goals>
+									<goal>read-project-properties</goal>
+								</goals>
+								<configuration>
+									<files>
+										<file>project.properties</file>
+									</files>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+						<artifactId>android-maven-plugin</artifactId>
+						<version>3.2.0</version>
+						<configuration>
+							<test>
+								<coverage>true</coverage>
+								<createReport>true</createReport>
+							</test>
+						</configuration>
+						<extensions>true</extensions>
+						<!-- -->
+						<executions>
+							<execution>
+								<id>pull-coverage</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>pull</goal>
+								</goals>
+								<configuration>
+									<pullSource>/data/data/com.android.test/files/coverage.ec</pullSource>
+									<pullDestination>${tested.project.dir}/target/emma/coverage.ec</pullDestination>
+								</configuration>
+							</execution>
+						</executions>
+
+					</plugin>
+				</plugins>
+			</build>
+			<reporting>
+				<plugins>
+				    <plugin>
+				        <groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-project-info-reports-plugin</artifactId>
+						<version>2.4</version>
+				    </plugin>
+
+				    
+					<plugin>
+						<groupId>org.sonatype.maven.plugin</groupId>
+						<artifactId>emma4it-maven-plugin</artifactId>
+						<version>1.4-SNAPSHOT</version>
+						<configuration>
+							<metadatas>${tested.project.dir}/target/emma/coverage.em,${tested.project.dir}/src/</metadatas>
+							<instrumentations>${tested.project.dir}/target/emma/coverage.ec</instrumentations>
+							<reportDirectory>${tested.project.dir}/target/emma/</reportDirectory>
+							<baseDirectory>{tested.project.dir}/target/</baseDirectory>
+							<formats>xml,html</formats>
+						</configuration>
+					</plugin>
+				</plugins>
+			</reporting>
+		</profile>
+	</profiles>
+	<build>
+		<!--<finalName>${project.artifactId}</finalName> -->
+		<plugins>
+			<plugin>
+				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+				<artifactId>android-maven-plugin</artifactId>
+				<configuration>
+					<test>
+						<!--<skip>true|false|auto</skip> -->
+<!-- 						<instrumentationPackage>com.android.test</instrumentationPackage> -->
+						<!--<instrumentationRunner>className</instrumentationRunner> -->
+						<!--<debug>true|false</debug> -->
+						<skip>true</skip>
+						<coverage>true</coverage>
+						<!--<logonly>true|false</logonly> avd -->
+						<!--<testsize>small|medium|large</testsize> -->
+						<testSize>large</testSize>
+						<createReport>true</createReport>
+						<!--<classes> -->
+						<!--<class>your.package.name.YourTestClass</class> -->
+						<!--</classes> -->
+						<!--<packages> -->
+						<!--<package>your.package.name</package> -->
+						<!--</packages> -->
+					</test>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											com.jayway.maven.plugins.android.generation2
+										</groupId>
+										<artifactId>
+											android-maven-plugin
+										</artifactId>
+										<versionRange>
+											[3.2.0,)
+										</versionRange>
+										<goals>
+											<goal>
+												generate-sources
+											</goal>
+											<goal>proguard</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>oss.sonatype.org-jayway-snapshots</id>
+			<name>Jayway OpenSource on Sonatype.org</name>
+			<url>http://oss.sonatype.org/content/repositories/jayway/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+	<dependencies>
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android</artifactId>
+			<version>${android.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android-test</artifactId>
+			<version>${android.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.zb.ide</groupId>
+			<artifactId>droidide</artifactId>
+			<type>apk</type>
+			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.zb.ide</groupId>
+			<artifactId>droidide</artifactId>
+			<type>jar</type>
+			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>

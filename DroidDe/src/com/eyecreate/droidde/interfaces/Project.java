@@ -1,7 +1,9 @@
-package com.eyecreate.droidde;
+package com.eyecreate.droidde.interfaces;
 
 import java.io.File;
 import java.util.List;
+
+import com.eyecreate.droidde.ProjectTypes;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -34,5 +36,9 @@ public interface Project {
 	public abstract void addNewFileToProject(File f);
 	
 	public abstract void removeFileFromProject(File f);
+	
+	public void open(String path);
+	
+	public void create(String path,String name,String type);
 
 }

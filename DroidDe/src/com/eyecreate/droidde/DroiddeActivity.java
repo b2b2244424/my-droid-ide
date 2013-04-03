@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
+import com.eyecreate.droidde.android.AndroidProject;
+import com.eyecreate.droidde.interfaces.Project;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.FragmentManager;

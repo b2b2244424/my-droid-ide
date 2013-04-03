@@ -1,4 +1,5 @@
-package com.eyecreate.droidde;
+package com.eyecreate.droidde.interfaces;
+
 
 import android.app.Activity;
 import android.content.Intent;

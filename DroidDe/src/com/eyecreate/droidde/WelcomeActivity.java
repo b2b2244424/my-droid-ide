@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import org.apache.commons.io.FileUtils;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
@@ -25,6 +24,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.eyecreate.droidde.android.AndroidProject;
+import com.eyecreate.droidde.android.AndroidProjectFactory;
+import com.eyecreate.droidde.interfaces.Project;
+import com.eyecreate.droidde.interfaces.ProjectFactory;
 
 public class WelcomeActivity extends Activity {
 	static final int DIALOG_NEW_PROJECT_ID = 0;
@@ -119,13 +123,13 @@ public class WelcomeActivity extends Activity {
     			String [] projectTypeArray = projectTypeArrayList.toArray(new String[projectTypeArrayList.size()]);
     			//connect buttons
     			Button create = (Button)dialog.findViewById(R.id.createButton);
+    			final EditText editProjDir = (EditText)dialog.findViewById(R.id.projectDirectory);
+    			editProjDir.setText(Environment.getExternalStorageDirectory().getAbsolutePath());
     			create.setOnClickListener(new View.OnClickListener() {
 					
 					public void onClick(View v) {
 						dialog.cancel();
-						createNewProject(ProjectTypes.valueOf((String) projectType.getSelectedItem()), ((EditText)dialog.findViewById(R.id.projectName)).getText().toString(), ((EditText)dialog.findViewById(R.id.projectDirectory)).getText().toString());
-						
-						
+						createNewProject(ProjectTypes.valueOf((String) projectType.getSelectedItem()), ((EditText)dialog.findViewById(R.id.projectName)).getText().toString(), editProjDir.getText().toString());
 					}
 				});
     			Button pick = (Button)dialog.findViewById(R.id.fileBrowseButton);
@@ -174,10 +178,14 @@ public class WelcomeActivity extends Activity {
     
     private void createNewProject(ProjectTypes type,String name, String path)
     {
+    	ProjectFactory factory = null;
+    	Project project = null;
     	if(type.equals(ProjectTypes.ANDROID))
     	{
-    		AndroidProject ap = new AndroidProject(path,name,type.name());
-    		if(ap.isValid())
+    		factory = new AndroidProjectFactory();
+    		project = factory.getProject();
+    		project.create(path, name, type.name());
+    		if(project.isValid())
     		{
     			ComponentName cn = new ComponentName("com.eyecreate","com.eyecreate.droidde.DroiddeActivity");
     			Intent intent = new Intent("android.intent.action.VIEW");

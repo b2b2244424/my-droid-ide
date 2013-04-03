@@ -1,4 +1,4 @@
-package com.eyecreate.droidde;
+package com.eyecreate.droidde.android;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,6 +7,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import org.apache.commons.io.FileUtils;
+
+import com.eyecreate.droidde.interfaces.Project;
+import com.eyecreate.droidde.interfaces.ProjectRunner;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;

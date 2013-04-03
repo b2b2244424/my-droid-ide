@@ -1,4 +1,4 @@
-package com.eyecreate.droidde;
+package com.eyecreate.droidde.android;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +25,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import com.eyecreate.droidde.ProjectTypes;
+import com.eyecreate.droidde.interfaces.Project;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -46,7 +49,17 @@ public class AndroidProject implements Project {
 	
 	//This class manages the project structure from the project XML and gives other classes information about the loaded project.
 	//In order to make error finding easier, pass a Directory, name, and type when you need a new project and the project.dpj when you need it loaded.
+	
+	public AndroidProject(){
+	}
+	
+	
 	public AndroidProject(String path) {
+		open(path);
+	}
+
+
+	public void open(String path) {
 		initialSanityChecks(path);
 		try {
 			dBuilder=DocumentBuilderFactory.newInstance().newDocumentBuilder();
@@ -81,13 +94,13 @@ public class AndroidProject implements Project {
 		File projectDir=new File(path);
 		if(projectDir.isDirectory() && projectDir.list().length==0)
 		{
-			createProject(new File(path),name,type);
+			create(new File(path),name,type);
 			isValid=true;
 		}
 		//this part is needed to allow "importing" existing project
 		else if(projectDir.isDirectory() && projectDir.list().length!=0 && Arrays.asList(projectDir.list()).contains("AndroidManifest.xml"))
 		{
-			createProject(new File(path),name,type);
+			create(new File(path),name,type);
 			isValid=true;
 		}
 		else
@@ -103,7 +116,7 @@ public class AndroidProject implements Project {
 		
 	}
 
-	private void createProject(File filePath,String name, String type)
+	public void create(File filePath,String name, String type)
 	{
 		try{
 			projectType = ProjectTypes.valueOf(type.toUpperCase());
@@ -322,6 +335,11 @@ public class AndroidProject implements Project {
 	public File getMainProjectFile()
 	{
 		return mainProjectFile;
+	}
+
+
+	public void create(String path, String name, String type) {
+		create(new File(path),name,type);
 	}
 
 }

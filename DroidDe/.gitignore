@@ -8,4 +8,5 @@
 /target
 /gen
 /bin
-/logs
+/proguard
+.checkstyle
