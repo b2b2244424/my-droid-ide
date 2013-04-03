@@ -15,7 +15,7 @@
 		<keystore.linux>/home/dev/android/market/android-key.keystore</keystore.linux>
 		<keystore_password>yourPassword</keystore_password>
 		<keystore_alias>yourKeyAlias</keystore_alias>
-		<maven_plugin_version>3.1.0</maven_plugin_version>		
+		<maven_plugin_version>3.2.0</maven_plugin_version>		
 		<emulator.avd>Android3.2</emulator.avd>
 		<api.version>15</api.version>
 

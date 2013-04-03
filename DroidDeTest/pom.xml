@@ -101,33 +101,6 @@
 		</profile>
 	</profiles>
 	<build>
-		<!--<finalName>${project.artifactId}</finalName> -->
-		<plugins>
-			<plugin>
-				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
-				<artifactId>android-maven-plugin</artifactId>
-				<configuration>
-					<test>
-						<!--<skip>true|false|auto</skip> -->
-<!-- 						<instrumentationPackage>com.android.test</instrumentationPackage> -->
-						<!--<instrumentationRunner>className</instrumentationRunner> -->
-						<!--<debug>true|false</debug> -->
-						<skip>true</skip>
-						<coverage>true</coverage>
-						<!--<logonly>true|false</logonly> avd -->
-						<!--<testsize>small|medium|large</testsize> -->
-						<testSize>large</testSize>
-						<createReport>true</createReport>
-						<!--<classes> -->
-						<!--<class>your.package.name.YourTestClass</class> -->
-						<!--</classes> -->
-						<!--<packages> -->
-						<!--<package>your.package.name</package> -->
-						<!--</packages> -->
-					</test>
-				</configuration>
-			</plugin>
-		</plugins>
 		<pluginManagement>
 			<plugins>
 				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
